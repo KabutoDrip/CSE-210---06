@@ -1,0 +1,5 @@
+I set up github to commit and push my versions of code. 
+This was beneficial as I could go back and look at my 
+old version to see what worked and didnt and also gave
+me a place to pick up from if anything where to go wrong.
+
