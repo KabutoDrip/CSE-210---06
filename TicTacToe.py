@@ -32,11 +32,30 @@ def selection():
         first = False
     print (token,first)
 def game_state():
-    game = ""
-    if pos[1] == pos[2] == pos[3]:
+    if pos[0] == pos[1] == pos[2]:
         game = "over"
+    elif pos[3] == pos[4] == pos[5]:
+        game = "over"
+    elif pos[6] == pos[7] == pos[8]:
+        game = "over"  
+         
+    elif pos[0] == pos[3] == pos[6]:
+        game = "over" 
+    elif pos[1] == pos[4] == pos[7]:
+        game = "over"
+    elif pos[2] == pos[5] == pos[8]:
+        game = "over"
+        
+    elif pos[0] == pos[4] == pos[8]:
+        game = "over"
+    elif pos[2] == pos[4] == pos[6]:
+        game = "over"
+        
+    else:
+        game = "tie"
     return game
 def turn():
+    game_state()
     while True:
         location = int(input("where would you like to go(1-9)"))
         if pos[location -1] != "X" and pos[location -1] != "O":
@@ -46,27 +65,38 @@ def turn():
             print("Enter a location that hasnt been used")
             continue
 def bot():
-    location = random.randint(0,8)
-    pos[location] = bot_token
+    game_state()
+    while True:
+        location = random.randrange(len(pos))
+        if pos[location -1] != "X" and pos[location -1] != "O":
+                pos[location-1] = bot_token
+                break;
+        else:
+            continue
 def main(game_state):
     selection()
     game = game_state()
     if first == True:
         show_grid(pos)
-        while game != "over":
+        i=1
+        for i in range (4):
             turn()
             show_grid(pos)
             print()
             bot()
             show_grid(pos)
             print()
+        print(game)
+            
     else:
         show_grid(pos)
-        while game != "over":
+        i=1
+        for i in range (4):
             bot()
             show_grid(pos)
             print()
             turn()
             show_grid(pos)
             print()
+        print(game)
 main(game_state)
